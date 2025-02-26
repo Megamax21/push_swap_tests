@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ml-hote <ml-hote@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:56:04 by ml-hote           #+#    #+#             */
-/*   Updated: 2025/02/26 13:13:21 by ml-hote          ###   ########.fr       */
+/*   Updated: 2025/02/26 14:12:25 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,4 +197,9 @@ void	ft_rotate(t_list **l, char name)
 	ft_putchar_fd('r', 1);
 	ft_putchar_fd(name, 1);
 	ft_putchar_fd('\n', 1);
+}
+
+void	ft_rev_rot(t_list **l, char name)
+{
+	
 }
