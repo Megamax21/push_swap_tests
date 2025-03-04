@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ml-hote <ml-hote@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:57:06 by ml-hote           #+#    #+#             */
-/*   Updated: 2025/02/26 14:12:32 by ml-hote          ###   ########.fr       */
+/*   Updated: 2025/03/03 15:41:09 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,10 @@ void	ft_swap(t_list *l, char name);
 void	ft_push(t_list **from, t_list **to, char name_to);
 void	ft_rotate(t_list **l, char name);
 void	ft_rev_rot(t_list **l, char name);
+void	ft_ss(t_list *list_a, t_list *list_b);
+void	ft_rr(t_list *list_a, t_list *list_b);
+void	ft_rrr(t_list *list_a, t_list *list_b);
+int		check_content(char *value);
+int		check_double(int val, t_list *l);
 
-#endif // LIBFT
+#endif

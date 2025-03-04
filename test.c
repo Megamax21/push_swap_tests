@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ml-hote <ml-hote@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:56:04 by ml-hote           #+#    #+#             */
-/*   Updated: 2025/02/26 14:12:25 by ml-hote          ###   ########.fr       */
+/*   Updated: 2025/03/01 11:07:30 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,98 +14,6 @@
 afin de gerer les listes chainees, les voir, les manipuler
 */
 #include "test.h"
-
-int		main(int arg_c, char **arg_v)
-{
-	t_list	*l1;
-	t_list	*l2;
-	
-	/*	Petits tests pour voir si je me souviens toujours
-		bien des argc argv !	*/
-
-	int		nb_args;
-
-	nb_args = 1;
-	printf("\nMon programme prend %i arguments \n", arg_c - 1);
-	while (nb_args < arg_c)
-	{
-		printf("arg %i : %s\n", nb_args, arg_v[nb_args]);
-		nb_args++;
-	}
-
-	/*	Tests sur listes chainees	*/
-	printf("Comment ca marche les listes chainees ?\n");
-		
-	if (arg_c > 1)
-	{
-		printf("---\n");
-		l1 = ft_lstnew(ft_atoi(arg_v[1])); // On donne a ma liste chainee sa toute premiere valeur
-		printf("---\n");
-
-		l2 = NULL;
-		/* Remplissage de la pile a et de la pile b*/
-		if (arg_c > 2)
-		{
-			nb_args = 2;
-			while (nb_args < arg_c)
-			{
-				ft_lstadd_back(&l1, ft_lstnew(ft_atoi(arg_v[nb_args]))); // A chaque fois qu'on trouve un nouvel argument on le rajoute au tout debut de la liste
-				nb_args++;
-			}
-		}
-		
-
-
-		printf("Arguments rajoutes a la liste\n");
-		print_list(l1, 'a');	
-		//print_list(l2);
-		
-		// ====== TESTS DES REGLES ======
-		printf("\n\nTESTS AVEC LES REGLES\n");
-		printf("sa : swap les 2 premiers elements au sommet de la pile a... CA MARCHE, pareil pour sb\n");
-		
-		// printf("a avant :");
-		// print_list(l1, 'a');
-		// ft_swap(l1, 'a');
-		// printf("a apres :");
-		// print_list(l1, 'a');
-		
-		printf("\n\npb et pa... MARCHENT !\n");
-		
-		// print_list(l2, 'b');
-		// ft_push(&l1, &l2, 'b');
-		// print_list(l2, 'b');
-		// ft_push(&l1, &l2, 'b');
-		// print_list(l1, 'a');
-		// print_list(l2, 'b');
-		// ft_swap(l2, 'b');
-		// print_list(l2, 'b');
-		// ft_push(&l2, &l1, 'a');
-		// print_list(l1, 'a');
-		// print_list(l2, 'b');
-		// ft_push(&l2, &l1, 'a');
-		// print_list(l1, 'a');
-		// print_list(l2, 'b');
-
-		printf("rotate, chaque element dans la pile decale d'une position vers le haut ! CA MARCHE !!");
-
-		// print_list(l1, 'a');
-		// ft_rotate(&l1, 'a');
-		// print_list(l1, 'a');
-		
-		// print_list (l2, 'b');
-		// ft_push(&l1, &l2, 'b');
-		// ft_push(&l1, &l2, 'b');
-		// ft_push(&l1, &l2, 'b');
-		// ft_push(&l1, &l2, 'b');
-		// ft_rotate(&l2, 'b');
-		// print_list(l2, 'b');
-		
-	}
-	
-	ft_putstr_fd("test\n", 1);
-	return  (0);
-}
 
 int		print_list(t_list *l, char name)
 {
@@ -141,9 +49,12 @@ void	ft_swap(t_list *l, char name)
 		l -> next -> content = l -> content;
 		l -> content = first;
 	}
-	ft_putchar_fd('s', 1);
-	ft_putchar_fd(name, 1);
-	ft_putchar_fd('\n', 1);
+	if (name != ' ')
+	{
+		ft_putchar_fd('s', 1);
+		ft_putchar_fd(name, 1);
+		ft_putchar_fd('\n', 1);		
+	}
 	//print_list(l);
 }
 
@@ -159,9 +70,12 @@ void	ft_push(t_list **from, t_list **to, char name_to)
 	{
 		ft_lstadd_front(to, ft_lstnew((*from) -> content));
 		(*from) = (*from) -> next; 
-		ft_putchar_fd('p', 1);
-		ft_putchar_fd(name_to, 1);
-		ft_putchar_fd('\n', 1);
+		if (name_to != ' ')
+		{
+			ft_putchar_fd('p', 1);
+			ft_putchar_fd(name_to, 1);
+			ft_putchar_fd('\n', 1);		
+		}
 	}
 }
 
@@ -194,12 +108,69 @@ void	ft_rotate(t_list **l, char name)
 	(*l) -> content = nb;
 	(*l) = l_adress; // On redonne l'adresse de la premiere valeur a la liste !
 
-	ft_putchar_fd('r', 1);
-	ft_putchar_fd(name, 1);
-	ft_putchar_fd('\n', 1);
+	if (name != ' ')
+	{
+		ft_putchar_fd('r', 1);
+		ft_putchar_fd(name, 1);
+		ft_putchar_fd('\n', 1);		
+	}
 }
 
 void	ft_rev_rot(t_list **l, char name)
 {
+	int	i;
+	int	paste;
+	int	copy;
+	t_list	*l_adress;
+
+	i = ft_lstsize(*l) - 1;
+	l_adress = (*l);
+	copy = (*l) -> content;
+	(*l) -> content = ft_lstlast(*l) -> content;
+	(*l) = (*l) -> next;
+	i--;
+	while (i >= 0)
+	{
+		paste = copy;
+		copy = (*l) -> content;
+		(*l) -> content = paste;
+		(*l) = (*l) -> next;
+		i--;
+	}
+	(*l) = l_adress;
 	
+	if (name != ' ')
+	{
+		ft_putstr_fd("rr", 1);
+		ft_putchar_fd(name, 1);
+		ft_putchar_fd('\n', 1);		
+	}
+}
+
+void	ft_ss(t_list *list_a, t_list *list_b)
+{
+	if (ft_lstsize(list_a) > 1)
+		ft_swap(list_a, ' ');
+	if (ft_lstsize(list_b) > 1)
+		ft_swap(list_b, ' ');
+	ft_putstr_fd("ss\n", 1);
+}
+
+void	ft_rr(t_list *list_a, t_list *list_b)
+{
+	if (ft_lstsize(list_a) > 1)
+		ft_rotate(&list_a, ' ');
+	if (ft_lstsize(list_b) > 1)
+		ft_rotate(&list_b, ' ');
+	ft_putstr_fd("rr\n", 1);
+
+}
+
+void	ft_rrr(t_list *list_a, t_list *list_b)
+{
+	if (ft_lstsize(list_a) > 1)
+		ft_rev_rot(&list_a, ' ');
+	if (ft_lstsize(list_b) > 1)
+		ft_rev_rot(&list_b, ' ');
+	ft_putstr_fd("rrr\n", 1);
 }
