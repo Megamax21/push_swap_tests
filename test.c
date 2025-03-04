@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:56:04 by ml-hote           #+#    #+#             */
-/*   Updated: 2025/03/01 11:07:30 by ml-hote          ###   ########.fr       */
+/*   Updated: 2025/03/04 16:01:48 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,37 +115,37 @@ void	ft_rotate(t_list **l, char name)
 		ft_putchar_fd('\n', 1);		
 	}
 }
-
+	
 void	ft_rev_rot(t_list **l, char name)
 {
-	int	i;
-	int	paste;
-	int	copy;
+	int		i;
+	int		paste;
+	int		copy;
 	t_list	*l_adress;
 
 	i = ft_lstsize(*l) - 1;
 	l_adress = (*l);
-	copy = (*l) -> content;
-	(*l) -> content = ft_lstlast(*l) -> content;
-	(*l) = (*l) -> next;
+	copy = (*l)-> content;
+	(*l)-> content = ft_lstlast(*l)-> content;
+	(*l) = (*l)-> next;
 	i--;
 	while (i >= 0)
 	{
 		paste = copy;
-		copy = (*l) -> content;
-		(*l) -> content = paste;
-		(*l) = (*l) -> next;
+		copy = (*l)-> content;
+		(*l)-> content = paste;
+		(*l) = (*l)-> next;
 		i--;
 	}
 	(*l) = l_adress;
-	
 	if (name != ' ')
 	{
 		ft_putstr_fd("rr", 1);
 		ft_putchar_fd(name, 1);
-		ft_putchar_fd('\n', 1);		
+		ft_putchar_fd('\n', 1);
 	}
 }
+
 
 void	ft_ss(t_list *list_a, t_list *list_b)
 {
