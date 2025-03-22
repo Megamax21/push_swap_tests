@@ -8,8 +8,12 @@ SRC_DIR = srcs
 OBJ_DIR = objs
 
 SRCS = push_swap_rules.c\
-		push_swap_utils_a.c\
+		ps_fill_stack.c\
+		ps_add_indexs.c\
 		ps_multi_rules.c\
+		ps_check_sorted.c\
+		ps_small_sorts.c\
+		ps_sort.c\
 		main.c\
 
 SRC_FILES = $(addprefix $(SRC_DIR)/, $(SRCS))
