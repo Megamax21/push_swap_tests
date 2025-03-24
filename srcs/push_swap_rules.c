@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 02:03:39 by ml-hote           #+#    #+#             */
-/*   Updated: 2025/03/20 16:22:22 by ml-hote          ###   ########.fr       */
+/*   Updated: 2025/03/24 14:34:43 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,31 +28,27 @@ void	ft_swap(t_list **l, char name)
 	t_list	*first;
 	t_list	*second;
 
-	if (!l || !*l || !(*l)->next)
-		return;
 	first = *l;
-	second = (*l)->next;
-	first->next = second->next;
+	second = (*l)-> next;
+	first->next = second-> next;
 	second->next = first;
 	*l = second;
 	ft_print_rule("s", name);
 }
 
-
 void	ft_rotate(t_list **l, char name)
 {
-	t_list *first;
-	t_list *last;
-	
+	t_list	*first;
+	t_list	*last;
+
 	first = *l;
 	last = *l;
-	if (*l && (*l)->next) 
+	if (*l && (*l)->next)
 	{
 		while (last->next)
 			last = last->next;
-
 		*l = first->next;
-		first->next = NULL; 
+		first->next = NULL;
 		last->next = first;
 	}
 	ft_print_rule("r", name);
@@ -60,12 +56,12 @@ void	ft_rotate(t_list **l, char name)
 
 void	ft_rev_rot(t_list **l, char name)
 {
-	t_list *prev;
-	t_list *last;
+	t_list	*prev;
+	t_list	*last;
 
 	prev = NULL;
 	last = *l;
-	if (*l && (*l)->next) 
+	if (*l && (*l)->next)
 	{
 		while (last->next)
 		{
@@ -78,7 +74,6 @@ void	ft_rev_rot(t_list **l, char name)
 	}
 	ft_print_rule("rr", name);
 }
-
 
 void	ft_print_rule(char *rule, char stack)
 {

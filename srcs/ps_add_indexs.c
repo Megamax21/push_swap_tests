@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:21:04 by ml-hote           #+#    #+#             */
-/*   Updated: 2025/03/16 20:32:18 by ml-hote          ###   ########.fr       */
+/*   Updated: 2025/03/24 11:11:22 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	ft_find_max(t_list **l)
 	return (max);
 }
 
-int	ft_find_next_min(int ind, int min, t_list **l)
+int	ft_assign_next_min(int ind, int min, t_list **l)
 {
 	t_list	*l_adress;
 	int		next_min;
@@ -92,6 +92,23 @@ int	ft_find_next_min(int ind, int min, t_list **l)
 	return (next_min);
 }
 
+int	ft_find_next_min(int i, t_list **l)
+{
+	t_list	*l_adress;
+	int		next_min;
+
+	l_adress = (*l);
+	next_min = ft_find_max(l);
+	while ((*l) != NULL)
+	{
+		if ((*l)-> index > i && (*l)-> index < next_min)
+			next_min = (*l)-> index;
+		(*l) = (*l)-> next;
+	}
+	(*l) = l_adress;
+	return (next_min);
+}
+
 void	ft_assign_index(t_list **l)
 {
 	int	ind;
@@ -103,7 +120,7 @@ void	ft_assign_index(t_list **l)
 	n_min = ft_find_min(l);
 	while (j > 0)
 	{
-		n_min = ft_find_next_min(ind, n_min, l);
+		n_min = ft_assign_next_min(ind, n_min, l);
 		ind++;
 		j--;
 	}

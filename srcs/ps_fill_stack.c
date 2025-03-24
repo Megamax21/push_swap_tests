@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:21:04 by ml-hote           #+#    #+#             */
-/*   Updated: 2025/03/20 16:24:46 by ml-hote          ###   ########.fr       */
+/*   Updated: 2025/03/24 13:45:44 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,20 +86,22 @@ int	ft_check_double(int val, t_list *l)
 	return (1);
 }
 
-int	ft_print_list(t_list *l, char name)
+int	ft_get_cost(int ind, t_list **a)
 {
-	t_list	*stack_b;
+	t_list	*temp;
 	int		i;
+	int		mid;
 
-	printf("\n=====\nAFFICHAGE DE LA PILE %c ! \n", name);
+	mid = ft_lstsize(*a) / 2;
 	i = 0;
-	stack_b = l;
-	while (stack_b != NULL)
+	temp = *a;
+	while (temp != NULL && temp -> index != ind)
 	{
-		printf ("content = %i || index = %i\n", stack_b->content, stack_b->index);
-		stack_b = stack_b->next;
 		i++;
+		temp = temp -> next;
 	}
-	printf("La liste a une taille de %i nombres ! \n", i);
-	return (i);
+	if (i > mid)
+		return ((ft_lstsize(*a) - i) * (-1));
+	else
+		return (i);
 }
