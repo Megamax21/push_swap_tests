@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 22:41:29 by ml-hote           #+#    #+#             */
-/*   Updated: 2025/03/24 14:29:55 by ml-hote          ###   ########.fr       */
+/*   Updated: 2025/03/25 13:37:34 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,16 @@ void	ft_sort(t_list **stack_a, t_list **stack_b, int length)
 void	ft_long_sort(t_list **a, t_list **b, int length)
 {
 	ft_init_sort(a, b, length);
-	while (ft_lstsize((*b)) > 0)
+	while (ft_lstsize(*b) > 0)
 	{
 		if ((*a)-> index == ft_find_next_min((*b)-> index, a))
 			ft_push(b, a, 'a');
 		else
 		{
+			if (ft_lstsize(*b) > 2)
+			{
+				ft_prepare_b(a, b);
+			}
 			ft_prepare_a(a, b);
 			ft_push(b, a, 'a');
 		}
@@ -63,6 +67,55 @@ void	ft_prepare_a(t_list **a, t_list **b)
 		{
 			ft_rev_rot(a, 'a');
 			cost ++;
+		}
+	}
+}
+
+void	ft_prepare_b(t_list **a, t_list **b)
+{
+	t_list	*temp;
+	int		lower_cost;
+	int		l;
+	int		i;
+	int		place;
+
+	temp = (*b);
+	place = 0;
+	lower_cost = ft_lstsize(*b);
+	i = 0;
+	l = ft_lstsize(*b);
+	while (l > 0)
+	{
+		if (ft_get_cost(ft_find_next_min(temp -> index, a), a) < lower_cost)
+		{
+			lower_cost = ft_get_cost(ft_find_next_min(temp -> index, a), a);
+			place = i;
+		}
+		temp = temp -> next;
+		i++;
+		l--;
+	}
+	l = ft_lstsize(*b);
+	place--;
+	if (place > l / 2)
+		place = (l - place) * (-1);
+	
+	ft_execute_b(place, b);
+}
+
+void	ft_execute_b(int place, t_list **b)
+{
+	while (place != 0)
+	{
+		if (place > 0)
+		{
+			place--;
+			ft_rotate(b, 'b');
+		}
+		if (place < 0)
+		{
+			place++;
+			ft_rev_rot(b, 'b');
 		}
 	}
 }
@@ -100,18 +153,17 @@ void	ft_get_one_on_top(t_list	**a)
 void	ft_init_sort(t_list **a, t_list **b, int l)
 {
 	int	mid;
+	int	size;
 
+	size = ft_lstsize(*a) - 1;
 	mid = l / 2;
-	while (ft_lstsize((*a)) > 2)
+	while (size-- > 1)
 	{
 		if ((*a)-> index == 1 || (*a)-> index == l)
 			ft_rotate(a, 'a');
+		else if ((*a)-> index > (*a)-> next -> index)
+			ft_swap(a, 'a');
 		ft_push(a, b, 'b');
-		if (ft_lstsize((*b)) > 1)
-		{
-			if ((*b)-> index < mid)
-				ft_rotate(b, 'b');
-		}
 	}
 	if ((*b)-> index <= mid)
 		ft_rotate(b, 'b');
