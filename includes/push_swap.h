@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:57:06 by ml-hote           #+#    #+#             */
-/*   Updated: 2025/03/24 14:32:26 by ml-hote          ###   ########.fr       */
+/*   Updated: 2025/03/25 10:40:07 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,7 @@ void	ft_init_sort(t_list **a, t_list **b, int legnth);
 void	ft_prepare_a(t_list **a, t_list **b);
 void	ft_get_one_on_top(t_list	**a);
 void	ft_safelstclear(t_list **lst);
+void	ft_prepare_b(t_list **a, t_list **b);
+void	ft_execute_b(int place, t_list **b);
 
 #endif
