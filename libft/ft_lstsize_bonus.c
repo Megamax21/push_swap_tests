@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 00:26:40 by ml-hote           #+#    #+#             */
-/*   Updated: 2024/11/26 01:09:17 by ml-hote          ###   ########.fr       */
+/*   Updated: 2025/03/24 14:21:33 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	ft_lstsize(t_list *lst)
 	int	n;
 
 	n = 0;
+	if (!lst)
+	    return (0);
 	while (lst != NULL)
 	{
 		n++;

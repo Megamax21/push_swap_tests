@@ -35,6 +35,7 @@ SRCS = ft_atoi.c\
 	ft_split.c\
 	ft_strmapi.c\
 	ft_striteri.c\
+	ft_safe_atoi.c\
 
 SRCS_BONUS = ft_lstnew_bonus.c\
 	ft_lstadd_front_bonus.c\
@@ -50,8 +51,8 @@ OBJS = $(SRCS:.c=.o)
 
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 
-$(NAME): $(OBJS)
-	ar rcs $(NAME) $(OBJS)
+$(NAME): $(OBJS) $(OBJS_BONUS)
+	ar rcs -o $(NAME) $(OBJS) $(OBJS_BONUS)
 
 .c.o:
 	cc $(FLAGS) -c $< -o $@
@@ -65,10 +66,5 @@ fclean : clean
 	$(RM) $(NAME)
     
 re: fclean all
-
-bonus: $(OBJS) $(OBJS_BONUS)
-	ar rcs -o $(NAME) $(OBJS) $(OBJS_BONUS)
-
-rebonus: fclean bonus
 
 .PHONY: all clean fclean re bonus rebonus

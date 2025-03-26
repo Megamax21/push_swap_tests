@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 09:29:25 by ml-hote           #+#    #+#             */
-/*   Updated: 2025/02/22 23:47:51 by ml-hote          ###   ########.fr       */
+/*   Updated: 2025/03/16 17:43:27 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,10 @@ values
 */
 typedef struct s_list
 {
-	int		content;
-	int		index;
+	int				content;
+	int				index;
 	struct s_list	*next;
+	struct s_list	*prev;
 }		t_list;
 
 int		ft_atoi(const char *s);
@@ -35,6 +36,7 @@ int		ft_isalpha(int c);
 int		ft_isdigit(int c);
 int		ft_isalnum(int c);
 int		ft_isascii(int c);
+int		ft_safe_atoi(const char *s, int *out);
 int		ft_isprint(int c);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
