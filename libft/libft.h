@@ -25,7 +25,8 @@ values
 */
 typedef struct s_list
 {
-	int				content;
+	int		content;
+	int		index;
 	struct s_list	*next;
 }		t_list;
 
