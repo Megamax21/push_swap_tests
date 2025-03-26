@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ml-hote <ml-hote@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 13:45:52 by ml-hote           #+#    #+#             */
-/*   Updated: 2025/03/25 12:07:13 by ml-hote          ###   ########.fr       */
+/*   Updated: 2025/03/26 16:22:45 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
-int	ft_print_list(t_list *l, char name);
 
 int	main(int arg_c, char **arg_v)
 {
@@ -27,10 +25,10 @@ int	main(int arg_c, char **arg_v)
 		return (0);
 	ft_assign_index(&stack_a);
 	ft_sort(&stack_a, &stack_b, arg_c - 1);
-	if (ft_check_sorted(&stack_a) == 0)
-		ft_print_list(stack_a, 'a');
-	ft_safelstclear(&stack_a);
-	ft_safelstclear(&stack_b);
+	// if (ft_check_sorted(&stack_a) == 0)
+	// ft_print_list(stack_a, 'A');
+	// ft_safelstclear(&stack_a);
+	// ft_safelstclear(&stack_b);
 	return (0);
 }
 
