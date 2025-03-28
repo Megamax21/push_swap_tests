@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 02:03:39 by ml-hote           #+#    #+#             */
-/*   Updated: 2025/03/24 17:25:27 by ml-hote          ###   ########.fr       */
+/*   Updated: 2025/03/28 19:30:52 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,8 @@ void	ft_rev_rot(t_list **l, char name)
 		last->next = *l;
 		*l = last;
 	}
-	ft_print_rule("rr", name);
+	if (name != ' ')
+		ft_print_rule("rr", name);
 }
 
 void	ft_print_rule(char *rule, char stack)

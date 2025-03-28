@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ps_sort.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ml-hote <ml-hote@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 22:41:29 by ml-hote           #+#    #+#             */
-/*   Updated: 2025/03/26 17:00:01 by ml-hote          ###   ########.fr       */
+/*   Updated: 2025/03/28 20:06:39 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,45 +30,187 @@ void	ft_sort(t_list **stack_a, t_list **stack_b, int length)
 	}
 }
 
+t_cost	*ft_newcost(int final_cost)
+{
+	t_cost	*new;
+
+	new = (t_cost *)malloc(sizeof(t_cost));
+	if (!new)
+		return (NULL);
+	new->ra = 0;
+	new->rb = 0;
+	new->rr = 0;
+	new->rra = 0;
+	new->rrb = 0;
+	new->rrr = 0;
+	new->final_cost = final_cost;
+	new->actual_cost = 0;
+	return (new);
+}
+
+void	ft_get_total_cost(t_list **a, t_list **b, t_cost **total_cost)
+{
+	t_list	*temp_b;
+	t_cost	*best_cost;
+	t_cost	*temp_c;
+	int 	start;
+	
+	start = 0;
+	temp_b = *b;
+	best_cost = ft_newcost(0);
+	temp_c = ft_newcost(0);
+	while (temp_b != NULL)
+	{
+		ft_empty_cost(&temp_c);
+		if (ft_get_cost(ft_find_next_min(temp_b -> index, a), a) >= 0)
+		{
+			temp_c -> ra = ft_get_cost(ft_find_next_min(temp_b -> index, a), a);
+			temp_c -> actual_cost += ft_get_cost(ft_find_next_min(temp_b -> index, a), a);
+		}
+		else
+		{
+			temp_c -> rra -= ft_get_cost(ft_find_next_min(temp_b -> index, a), a);
+			temp_c -> actual_cost -= ft_get_cost(ft_find_next_min(temp_b -> index, a), a);
+		}
+		if (ft_get_cost(temp_b -> index, b) >= 0)
+		{
+			temp_c -> rb = ft_get_cost(temp_b -> index, b);
+			temp_c -> actual_cost += ft_get_cost(temp_b -> index, b);
+		}
+		else
+		{
+			temp_c -> rrb -= ft_get_cost(temp_b -> index, b);
+			temp_c -> actual_cost -= ft_get_cost(temp_b -> index, b);
+		}
+		if (start == 0)
+		{
+			ft_rework_cost(&temp_c);
+			temp_c -> final_cost = temp_c -> actual_cost;
+			best_cost = temp_c;
+			(*total_cost) = best_cost;
+			start = 1;
+		}
+		if (temp_c -> actual_cost < temp_c -> final_cost)
+		{
+			ft_rework_cost(&temp_c);
+			temp_c -> final_cost = temp_c -> actual_cost;
+			best_cost = temp_c;
+			(*total_cost) = best_cost;
+			//ft_print_cost(temp_c);
+		}		
+		best_cost -> actual_cost = 0;
+		temp_b = temp_b -> next;
+	}
+}
+
+void	ft_empty_cost(t_cost **c)
+{
+	(*c)->ra = 0;
+	(*c)->rb = 0;
+	(*c)->rr = 0;
+	(*c)->rra = 0;
+	(*c)->rrb = 0;
+	(*c)->rrr = 0;
+}
+
+int	ft_rework_cost(t_cost **c)
+{
+	int	i;
+
+	i = 0;
+	while ((*c)-> ra > 0 && (*c)-> rb > 0)
+	{
+		(*c)-> ra--;
+		(*c)-> rb--;
+		(*c)-> final_cost--;
+		(*c)-> rr++;
+		i++;
+	}
+	while ((*c)-> rra > 0 && (*c)-> rrb > 0)
+	{
+		(*c)-> rra--;
+		(*c)-> rrb--;
+		(*c)-> final_cost--;
+		(*c)-> rrr++;
+	}
+	return (i);
+}
+
 void	ft_long_sort(t_list **a, t_list **b, int length)
 {
-	ft_init_sort(a, b, length);
+	t_cost *total_cost;
 
+	total_cost = ft_newcost(0);
+	ft_init_sort(a, b, length);
 	while (ft_lstsize(*b) > 0)
 	{
+		// ft_print_list(*a, 'A');
+		// ft_print_list(*b, 'B');
 		if ((*a)-> index == ft_find_next_min((*b)-> index, a))
 		{
 			ft_push(b, a, 'a');
 		}
 		else
 		{
-			ft_prepare_a(a, b);
+			ft_get_total_cost(a, b, &total_cost);
+			ft_prepare_stacks(a, b, &total_cost);
 			ft_push(b, a, 'a');
+			ft_empty_cost(&total_cost);
+			total_cost -> final_cost = 0;
 		}
+		// printf("====\n");
 	}
 	ft_get_one_on_top(a);
 }
 
-void	ft_prepare_a(t_list **a, t_list **b)
+void	ft_print_cost(t_cost *c)
 {
-	int	cost;
+	printf("RA : %i\n", c -> ra);
+	printf("RB : %i\n", c -> rb);
+	printf("RR : %i\n", c -> rr);
+	printf("RRA : %i\n", c -> rra);
+	printf("RRB : %i\n", c -> rrb);
+	printf("RRR : %i\n", c -> rrr);
+	printf("final : %i\n", c -> final_cost);
+}
 
-	cost = ft_get_cost(ft_find_next_min((*b)-> index, a), a);
-	if (cost > 0)
+void	ft_prepare_stacks(t_list **a, t_list **b, t_cost **c)
+{
+	// ft_print_cost(*c);
+	ft_rework_cost(c);
+	// ft_print_cost(*c);
+	while ((*c) -> ra > 0)
 	{
-		while (cost > 0)
-		{
-			ft_rotate(a, 'a');
-			cost--;
-		}
+		ft_rotate(a, 'a');
+		(*c) -> ra--;
 	}
-	else if (cost < 0)
+	while ((*c) -> rb > 0)
 	{
-		while (cost < 0)
-		{
-			ft_rev_rot(a, 'a');
-			cost ++;
-		}
+		ft_rotate(b, 'b');
+		(*c) -> rb--;
+	}
+	while ((*c) -> rr > 0)
+	{
+		ft_rr(a, b);
+		(*c) -> rr--;
+	}
+	while ((*c) -> rra > 0)
+	{
+		ft_rev_rot(a, 'a');
+		(*c) -> rra--;
+	}
+	while ((*c) -> rrb > 0)
+	{
+		ft_rev_rot(b, 'b');
+		(*c) -> rrb--;
+	}
+	while ((*c) -> rrr > 0)
+	{
+		// printf("RRR ici !!!\n");
+		ft_rrr(a, b);
+		// ft_print_list(*a, '5');
+		// ft_print_list(*b, '6');
+		(*c) -> rrr--;
 	}
 }
 
@@ -87,11 +229,6 @@ void	ft_execute_b(int place, t_list **b)
 			ft_rev_rot(b, 'b');
 		}
 	}
-}
-
-void	ft_check_lowest_cost(t_list **a, t_list **b)
-{
-	int	
 }
 
 void	ft_get_one_on_top(t_list **a)
@@ -131,18 +268,14 @@ void	ft_init_sort(t_list **a, t_list **b, int l)
 
 	size = ft_lstsize(*a) - 1;
 	mid = l / 2;
-	(*b) = (*b)-> next;
+	if (*b)
+		(*b) = (*b)-> next;
 	while (size-- > 1)
 	{
-		if ((*a)-> index == 1 || (*a)-> index == l)
+		if ((*a)-> index == l)
 			ft_rotate(a, 'a');
-		else if ((*a)-> index > (*a)-> next -> index)
-			ft_swap(a, 'a');
 		ft_push(a, b, 'b');
 		if ((*b)-> index <= mid)
 			ft_rotate(b, 'b');
-		// printf("l = %i\tmid = %i\n", l, mid);
 	}
-	// if ((*a)-> index == 1)
-	// 	ft_swap(a, 'a');
 }

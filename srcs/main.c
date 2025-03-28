@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ml-hote <ml-hote@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 13:45:52 by ml-hote           #+#    #+#             */
-/*   Updated: 2025/03/26 16:22:45 by ml-hote          ###   ########.fr       */
+/*   Updated: 2025/03/28 20:21:15 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ int	main(int arg_c, char **arg_v)
 	ft_assign_index(&stack_a);
 	ft_sort(&stack_a, &stack_b, arg_c - 1);
 	// if (ft_check_sorted(&stack_a) == 0)
-	// ft_print_list(stack_a, 'A');
 	// ft_safelstclear(&stack_a);
 	// ft_safelstclear(&stack_b);
+	// ft_print_list(stack_a, 'a');
 	return (0);
 }
 
@@ -61,6 +61,6 @@ int	ft_print_list(t_list *l, char name)
 		stack_b = stack_b->next;
 		i++;
 	}
-	printf("La liste a une taille de %i nombres ! \n", i);
+	printf("La liste %c a une taille de %i nombres ! \n", name, i);
 	return (i);
 }
