@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 02:11:46 by ml-hote           #+#    #+#             */
-/*   Updated: 2025/03/28 20:02:53 by ml-hote          ###   ########.fr       */
+/*   Updated: 2025/03/28 21:30:12 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_rr(t_list **list_a, t_list **list_b)
 		ft_rotate(list_a, ' ');
 	if (ft_lstsize(*list_b) > 1)
 		ft_rotate(list_b, ' ');
-	ft_print_rule("rr", '\0');
+	write(1, "rr\n", 3);
 }
 
 void	ft_rrr(t_list **list_a, t_list **list_b)
@@ -36,5 +36,5 @@ void	ft_rrr(t_list **list_a, t_list **list_b)
 		ft_rev_rot(list_a, ' ');
 	if (ft_lstsize(*list_b) > 1)
 		ft_rev_rot(list_b, ' ');
-	ft_print_rule("rrr", '\0');
+	write(1, "rrr\n", 4);
 }

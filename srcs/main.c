@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 13:45:52 by ml-hote           #+#    #+#             */
-/*   Updated: 2025/03/28 20:21:15 by ml-hote          ###   ########.fr       */
+/*   Updated: 2025/03/28 21:22:48 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	main(int arg_c, char **arg_v)
 	// if (ft_check_sorted(&stack_a) == 0)
 	// ft_safelstclear(&stack_a);
 	// ft_safelstclear(&stack_b);
-	// ft_print_list(stack_a, 'a');
+	// ft_print_list(stack_b, 'b');
 	return (0);
 }
 

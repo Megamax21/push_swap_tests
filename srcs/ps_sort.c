@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 22:41:29 by ml-hote           #+#    #+#             */
-/*   Updated: 2025/03/28 20:06:39 by ml-hote          ###   ########.fr       */
+/*   Updated: 2025/03/28 22:38:33 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,12 +144,8 @@ void	ft_long_sort(t_list **a, t_list **b, int length)
 	ft_init_sort(a, b, length);
 	while (ft_lstsize(*b) > 0)
 	{
-		// ft_print_list(*a, 'A');
-		// ft_print_list(*b, 'B');
 		if ((*a)-> index == ft_find_next_min((*b)-> index, a))
-		{
 			ft_push(b, a, 'a');
-		}
 		else
 		{
 			ft_get_total_cost(a, b, &total_cost);
@@ -158,7 +154,6 @@ void	ft_long_sort(t_list **a, t_list **b, int length)
 			ft_empty_cost(&total_cost);
 			total_cost -> final_cost = 0;
 		}
-		// printf("====\n");
 	}
 	ft_get_one_on_top(a);
 }
@@ -266,7 +261,7 @@ void	ft_init_sort(t_list **a, t_list **b, int l)
 	int	mid;
 	int	size;
 
-	size = ft_lstsize(*a) - 1;
+	size = ft_lstsize(*a);
 	mid = l / 2;
 	if (*b)
 		(*b) = (*b)-> next;

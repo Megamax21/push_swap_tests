@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:21:04 by ml-hote           #+#    #+#             */
-/*   Updated: 2025/03/27 19:33:40 by ml-hote          ###   ########.fr       */
+/*   Updated: 2025/03/28 21:21:08 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	ft_check_double(int val, t_list *l)
 	return (1);
 }
 
-int	ft_get_cost(int ind, t_list **a)
+int	ft_get_cost(int ind, t_list **a )
 {
 	t_list	*temp;
 	int		i;
