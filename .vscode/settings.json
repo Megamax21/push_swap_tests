@@ -1,8 +1,0 @@
-{
-	"files.associations": {
-		"random": "c",
-		"chrono": "c",
-		"variant": "c",
-		"push_swap.h": "c"
-	}
-}
