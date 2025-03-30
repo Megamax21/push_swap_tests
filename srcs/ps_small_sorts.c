@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 20:26:42 by ml-hote           #+#    #+#             */
-/*   Updated: 2025/03/17 23:16:27 by ml-hote          ###   ########.fr       */
+/*   Updated: 2025/03/30 21:21:15 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,28 @@ void	ft_sort_three(t_list **l)
 		ft_rotate(l, 'a');
 	if (ft_check_order(*l) == 3)
 		ft_rev_rot(l, 'a');
+}
+
+void	ft_sort_four(t_list **a, t_list **b)
+{
+	while ((*a)-> index != 1)
+		ft_rotate(a, 'a');
+	ft_push(a, b, 'b');
+	ft_assign_index(a);
+	ft_sort_three(a);
+	ft_push(b, a, 'a');
+}
+
+void	ft_sort_five(t_list **a, t_list **b)
+{
+	while ((*a)-> index != 1)
+		ft_rotate(a, 'a');
+	ft_push(a, b, 'b');
+	while ((*a)-> index != 2)
+		ft_rotate(a, 'a');
+	ft_push(a, b, 'b');
+	ft_assign_index(a);
+	ft_sort_three(a);
+	ft_push(b, a, 'a');
+	ft_push(b, a, 'a');
 }

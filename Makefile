@@ -14,6 +14,8 @@ SRCS = push_swap_rules.c\
 		ps_check_sorted.c\
 		ps_small_sorts.c\
 		ps_sort.c\
+		ps_costs.c\
+		ps_utils.c\
 		main.c\
 
 SRC_FILES = $(addprefix $(SRC_DIR)/, $(SRCS))
