@@ -47,4 +47,27 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+tester:
+	@git clone https://github.com/LeoFu9487/push_swap_tester.git
+
+visualizer:
+	@git clone https://github.com/o-reo/push_swap_visualizer.git
+	@mkdir push_swap_visualizer/build
+	@cd push_swap_visualizer/build && cmake ..
+	@cd push_swap_visualizer/build && make
+
+checker:
+	@wget https://cdn.intra.42.fr/document/document/25656/checker_linux
+	@chmod 777 checker_linux
+
+test:
+	@echo "Enter arguments:"
+	@read ARGS; \
+	./push_swap $$ARGS | ./checker $$ARGS
+    
+end:
+	@rm -rf checker_linux
+	@rm -rf push_swap_tester
+	@rm -rf push_swap_visualizer
+
+.PHONY: all clean fclean re tester

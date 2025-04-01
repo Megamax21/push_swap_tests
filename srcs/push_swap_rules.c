@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 02:03:39 by ml-hote           #+#    #+#             */
-/*   Updated: 2025/03/28 19:30:52 by ml-hote          ###   ########.fr       */
+/*   Updated: 2025/04/01 10:13:54 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,18 @@
 
 void	ft_push(t_list **from, t_list **to, char name_to)
 {
-	if (from != NULL)
-	{
-		ft_lstadd_front(to, ft_lstnew((*from)-> content));
-		(*to)-> index = (*from)-> index;
-		(*from) = (*from)-> next;
-		ft_print_rule("p", name_to);
-	}
+	t_list	*temp;
+
+	if (from == NULL || *from == NULL)
+		return ;
+	temp = *from;
+	*from = (*from)->next;
+	ft_lstadd_front(to, ft_lstnew(temp->content));
+	(*to)->index = temp->index;
+	free(temp);
+	ft_print_rule("p", name_to);
 }
+
 
 void	ft_swap(t_list **l, char name)
 {
@@ -41,16 +45,15 @@ void	ft_rotate(t_list **l, char name)
 	t_list	*first;
 	t_list	*last;
 
+	if (!l || !(*l) || !(*l)->next)
+		return ;
 	first = *l;
 	last = *l;
-	if (*l && (*l)->next)
-	{
-		while (last->next)
-			last = last->next;
-		*l = first->next;
-		first->next = NULL;
-		last->next = first;
-	}
+	while (last->next)
+		last = last->next;
+	*l = first->next;
+	first->next = NULL;
+	last->next = first;
 	ft_print_rule("r", name);
 }
 

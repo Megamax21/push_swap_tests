@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:57:06 by ml-hote           #+#    #+#             */
-/*   Updated: 2025/03/30 21:23:26 by ml-hote          ###   ########.fr       */
+/*   Updated: 2025/04/01 09:57:31 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int		ft_fill_stack(int len, char **entries, t_list **stack);
 int		ft_find_next_min(int i, t_list **l);
 int		ft_assign_next_min(int ind, int min, t_list **l);
 int		ft_rework_cost(t_cost **c);
+void	ft_free_cost(t_cost *c);
 void	ft_swap(t_list **l, char name);
 void	ft_push(t_list **from, t_list **to, char name_to);
 void	ft_rotate(t_list **l, char name);

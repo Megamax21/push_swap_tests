@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 16:42:23 by ml-hote           #+#    #+#             */
-/*   Updated: 2025/03/30 20:08:55 by ml-hote          ###   ########.fr       */
+/*   Updated: 2025/04/01 10:12:02 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ void	ft_get_total_cost(t_list **a, t_list **b, t_cost **total_cost)
 		temp_c -> actual_cost = 0;
 		temp_b = temp_b -> next;
 	}
+	// ft_free_cost(temp_c);
+	// ft_free_cost(best_cost);
 }
 
 void	ft_empty_cost(t_cost *c)

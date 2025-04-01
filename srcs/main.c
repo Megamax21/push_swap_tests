@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 13:45:52 by ml-hote           #+#    #+#             */
-/*   Updated: 2025/03/30 21:23:37 by ml-hote          ###   ########.fr       */
+/*   Updated: 2025/03/31 09:43:03 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,16 @@ int	main(int arg_c, char **arg_v)
 	int		nb_args;
 
 	nb_args = 1;
+	stack_b = NULL;
 	while (nb_args < arg_c)
 		nb_args++;
 	if (ft_fill_stack(arg_c, arg_v, &stack_a) == 0)
 		return (0);
 	ft_assign_index(&stack_a);
 	ft_sort(&stack_a, &stack_b, arg_c - 1);
+	ft_safelstclear(&stack_a);
+	if (stack_b)
+		ft_safelstclear(&stack_b);
 	return (0);
 }
 
@@ -41,4 +45,13 @@ void	ft_safelstclear(t_list **lst)
 		*lst = tmp;
 	}
 	*lst = NULL;
+}
+
+void	ft_free_cost(t_cost *c)
+{
+    if (c != NULL)
+    {
+        free(c);
+        c = NULL;
+    }
 }

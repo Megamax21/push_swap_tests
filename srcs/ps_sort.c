@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 22:41:29 by ml-hote           #+#    #+#             */
-/*   Updated: 2025/03/30 20:51:27 by ml-hote          ###   ########.fr       */
+/*   Updated: 2025/04/01 10:14:15 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	ft_long_sort(t_list **a, t_list **b, int length)
 			total_cost -> final_cost = 0;
 		}
 	}
+	// ft_free_cost(total_cost);
 	ft_get_one_on_top(a);
 }
 
@@ -91,16 +92,19 @@ void	ft_init_sort(t_list **a, t_list **b, int l)
 	int	mid;
 	int	size;
 
+	if (!a || !*a) 
+		return ;
 	size = ft_lstsize(*a);
 	mid = l / 2;
-	if (*b)
-		(*b) = (*b)-> next;
 	while (size-- > 1)
 	{
-		if ((*a)-> index == l)
+		if ((*a) && (*a)->index == l)
 			ft_rotate(a, 'a');
 		ft_push(a, b, 'b');
-		if ((*b)-> index <= mid)
+		if (!(*a))
+			return ;
+		if (*b && (*b)->index <= mid && (*b)->next)
 			ft_rotate(b, 'b');
 	}
 }
+
