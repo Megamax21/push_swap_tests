@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ps_small_sorts.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ml-hote <ml-hote@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 20:26:42 by ml-hote           #+#    #+#             */
-/*   Updated: 2025/03/30 21:21:15 by ml-hote          ###   ########.fr       */
+/*   Updated: 2025/04/04 20:32:06 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	ft_sort_four(t_list **a, t_list **b)
 		ft_rotate(a, 'a');
 	ft_push(a, b, 'b');
 	ft_assign_index(a);
+	ft_print_lst(*a);
 	ft_sort_three(a);
 	ft_push(b, a, 'a');
 }

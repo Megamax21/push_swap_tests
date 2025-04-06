@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ps_sort.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ml-hote <ml-hote@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 22:41:29 by ml-hote           #+#    #+#             */
-/*   Updated: 2025/04/01 10:14:15 by ml-hote          ###   ########.fr       */
+/*   Updated: 2025/04/04 19:54:57 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ void	ft_long_sort(t_list **a, t_list **b, int length)
 			total_cost -> final_cost = 0;
 		}
 	}
-	// ft_free_cost(total_cost);
 	ft_get_one_on_top(a);
+	ft_free_cost(total_cost);
 }
 
 void	ft_get_one_on_top(t_list **a)

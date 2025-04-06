@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ps_costs.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ml-hote <ml-hote@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 16:42:23 by ml-hote           #+#    #+#             */
-/*   Updated: 2025/04/01 10:12:02 by ml-hote          ###   ########.fr       */
+/*   Updated: 2025/04/04 20:16:13 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,7 @@ void	ft_get_total_cost(t_list **a, t_list **b, t_cost **total_cost)
 		temp_c -> actual_cost = 0;
 		temp_b = temp_b -> next;
 	}
-	// ft_free_cost(temp_c);
-	// ft_free_cost(best_cost);
+	ft_free_cost(temp_c);
 }
 
 void	ft_empty_cost(t_cost *c)

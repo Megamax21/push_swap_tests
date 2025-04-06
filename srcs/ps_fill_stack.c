@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ps_fill_stack.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ml-hote <ml-hote@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:21:04 by ml-hote           #+#    #+#             */
-/*   Updated: 2025/03/28 21:21:08 by ml-hote          ###   ########.fr       */
+/*   Updated: 2025/04/06 10:35:13 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,33 +19,34 @@
 	In the other case it will return 1
 */
 
+int ft_is_all_good(char *v, t_list *s)
+{
+	if (ft_check_content(v) == 0
+		|| ft_check_double(ft_atoi(v), s) == 0)
+		return (0);
+	return (1);
+}
+
 int	ft_fill_stack(int len, char **entries, t_list **stack)
 {
 	int	i;
 	int	value;
 
-	i = 0;
-	if (len >= 2)
+	i = 1;
+	while (i < len)
 	{
-		(*stack) = ft_lstnew(ft_atoi(entries[1]));
-		i = 2;
-		while (i < len)
+		if (ft_safe_atoi(entries[i], &value) == 0
+			|| ft_is_all_good(entries[i], *stack) == 0)
 		{
-			if (ft_check_content(entries[i]) == 0
-				|| ft_check_double(ft_atoi(entries[i]), *stack) == 0
-				|| ft_safe_atoi(entries[i], &value) == 0)
-			{
-				ft_putstr_fd("Error\n", 1);
-				return (0);
-			}
-			ft_lstadd_back(stack, ft_lstnew(value));
-			i++;
+			ft_putstr_fd("Error\n", 1);
+			ft_safelstclear(stack);
+			return (0);
 		}
-		return (1);
+		ft_lstadd_back(stack, ft_lstnew(value));
+		i++;
 	}
-	return (0);
+	return (1);
 }
-
 /* 	Check content 
 	This functions helps check a value at the beginning of 
 	push swap when the program takes in the args. It checks

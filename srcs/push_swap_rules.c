@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_rules.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ml-hote <ml-hote@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 02:03:39 by ml-hote           #+#    #+#             */
-/*   Updated: 2025/04/01 10:13:54 by ml-hote          ###   ########.fr       */
+/*   Updated: 2025/04/04 19:14:48 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ void	ft_rotate(t_list **l, char name)
 	*l = first->next;
 	first->next = NULL;
 	last->next = first;
-	ft_print_rule("r", name);
+	// if (name != ' ')
+		ft_print_rule("r", name);
 }
 
 void	ft_rev_rot(t_list **l, char name)

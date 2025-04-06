@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ps_add_indexs.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ml-hote <ml-hote@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:21:04 by ml-hote           #+#    #+#             */
-/*   Updated: 2025/03/24 11:11:22 by ml-hote          ###   ########.fr       */
+/*   Updated: 2025/04/06 11:13:18 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,34 +94,40 @@ int	ft_assign_next_min(int ind, int min, t_list **l)
 
 int	ft_find_next_min(int i, t_list **l)
 {
-	t_list	*l_adress;
+	t_list	*tmp;
 	int		next_min;
 
-	l_adress = (*l);
+	tmp = (*l);
 	next_min = ft_find_max(l);
-	while ((*l) != NULL)
+	while (tmp != NULL)
 	{
-		if ((*l)-> index > i && (*l)-> index < next_min)
-			next_min = (*l)-> index;
-		(*l) = (*l)-> next;
+		if (tmp-> index > i && tmp-> index < next_min)
+			next_min = tmp-> index;
+		tmp = tmp-> next;
 	}
-	(*l) = l_adress;
 	return (next_min);
 }
 
 void	ft_assign_index(t_list **l)
 {
-	int	ind;
-	int	j;
-	int	n_min;
+	int		index;
+	t_list	*min_node;
+	t_list	*tmp;
 
-	ind = 2;
-	j = ft_lstsize(*l) - 1;
-	n_min = ft_find_min(l);
-	while (j > 0)
+	index = 1;
+	while (index <= ft_lstsize(*l))
 	{
-		n_min = ft_assign_next_min(ind, n_min, l);
-		ind++;
-		j--;
+		tmp = *l;
+		min_node = NULL;
+		while (tmp)
+		{
+			if (tmp->index == 0 && (!min_node
+				|| tmp->content < min_node->content))
+				min_node = tmp;
+			tmp = tmp->next;
+		}
+		if (min_node)
+			min_node->index = index;
+		index++;
 	}
 }

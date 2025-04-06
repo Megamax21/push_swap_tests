@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ps_check_sorted.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ml-hote <ml-hote@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 22:10:12 by ml-hote           #+#    #+#             */
-/*   Updated: 2025/03/25 11:54:31 by ml-hote          ###   ########.fr       */
+/*   Updated: 2025/04/06 11:01:31 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,13 @@ int	ft_check_sorted(t_list **l)
 			return (0);
 	}
 	return (1);
+}
+
+void	ft_reset_index(t_list *lst)
+{
+	while (lst)
+	{
+		lst->index = 0;
+		lst = lst->next;
+	}
 }

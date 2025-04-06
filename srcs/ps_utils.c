@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ps_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ml-hote <ml-hote@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 17:16:32 by ml-hote           #+#    #+#             */
-/*   Updated: 2025/03/30 20:18:04 by ml-hote          ###   ########.fr       */
+/*   Updated: 2025/04/04 11:31:50 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,9 @@ void	ft_update_temp_cost(t_cost *best_c, t_cost *temp_c, t_cost **total_c)
 	ft_rework_cost(&temp_c);
 	ft_copy_cost(temp_c, best_c);
 	temp_c -> final_cost = temp_c -> actual_cost;
-	(*total_c) = best_c;
+	// printf("ET JUSTE AVANT CA DONNE CA :\n");
+	//ft_print_cost(*total_c);
+	ft_copy_cost(best_c, *total_c);
+	// printf("JE TE JURE A TOUT MOMENT CEST LA : \n");
+	// ft_print_cost(*total_c);
 }
