@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ml-hote <ml-hote@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:57:06 by ml-hote           #+#    #+#             */
-/*   Updated: 2025/04/01 09:57:31 by ml-hote          ###   ########.fr       */
+/*   Updated: 2025/04/06 11:01:43 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ typedef struct s_cost
 	int	final_cost;
 	int	actual_cost;
 }		t_cost;
+
+void ft_print_cost(t_cost *c);
+void ft_print_lst(t_list *list);
 
 int		ft_check_sorted(t_list **l);
 int		ft_check_content(char *value);
@@ -70,6 +73,7 @@ void	ft_work_on_b(t_list **b, t_list *tb, t_cost *c);
 void	ft_update_temp_cost(t_cost *best_c, t_cost *temp_c, t_cost **total_c);
 void	ft_sort_four(t_list **a, t_list **b);
 void	ft_sort_five(t_list **a, t_list **b);
+void	ft_reset_index(t_list *lst);
 t_cost	*ft_newcost(int final_cost);
 
 #endif
