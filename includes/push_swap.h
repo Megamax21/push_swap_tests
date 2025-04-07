@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:57:06 by ml-hote           #+#    #+#             */
-/*   Updated: 2025/04/06 11:01:43 by ml-hote          ###   ########.fr       */
+/*   Updated: 2025/04/07 20:20:23 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,11 @@ int		ft_find_min(t_list **l);
 int		ft_find_max(t_list **l);
 int		ft_check_order(t_list *l);
 int		ft_get_cost(int ind, t_list **a);
-int		ft_fill_stack(int len, char **entries, t_list **stack);
+int		ft_fill_stack(int base_len, int len, char **entries, t_list **stack);
 int		ft_find_next_min(int i, t_list **l);
 int		ft_assign_next_min(int ind, int min, t_list **l);
 int		ft_rework_cost(t_cost **c);
+int		ft_find_i_max(t_list **l);
 void	ft_free_cost(t_cost *c);
 void	ft_swap(t_list **l, char name);
 void	ft_push(t_list **from, t_list **to, char name_to);
@@ -74,6 +75,7 @@ void	ft_update_temp_cost(t_cost *best_c, t_cost *temp_c, t_cost **total_c);
 void	ft_sort_four(t_list **a, t_list **b);
 void	ft_sort_five(t_list **a, t_list **b);
 void	ft_reset_index(t_list *lst);
+void	sort_thre2(t_list **l);
 t_cost	*ft_newcost(int final_cost);
 
 #endif
