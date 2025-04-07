@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_safe_atoi.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ml-hote <ml-hote@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 02:49:14 by ml-hote           #+#    #+#             */
-/*   Updated: 2025/03/16 17:36:07 by ml-hote          ###   ########.fr       */
+/*   Updated: 2025/04/07 20:38:29 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,18 @@
 int	ft_safe_atoi(const char *s, int *out)
 {
 	int			sign;
-	int			i;
+	size_t			i;
 	long int	nb;
 
 	nb = 0;
 	i = 0;
 	sign = 1;
+	if (!s)
+		return (0);
 	while (s[i] == 32 || (s[i] >= 9 && s[i] <= 13))
 		i++;
+	if (i == ft_strlen(s))
+		return (0);
 	if ((s[i] == '+' || s[i] == '-'))
 	{
 		if (s[i] == '-')

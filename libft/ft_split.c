@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ml-hote <ml-hote@student.42nice.fr>        +#+  +:+       +#+        */
+/*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 15:29:53 by ml-hote           #+#    #+#             */
-/*   Updated: 2024/11/15 15:30:09 by ml-hote          ###   ########.fr       */
+/*   Updated: 2025/04/07 20:37:16 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,29 @@ size_t	ft_countword(char const *s, char c)
 	return (count);
 }
 
+int	only_char(char const *s, char c, char **lst)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i] == c)
+		i++;
+	if (i == ft_strlen(s))
+	{
+		free(lst);
+		return (1);
+	}
+	return (0);
+}
+
 char	**ft_split(char const *s, char c)
 {
 	char	**lst;
 	size_t	word_len;
-	int		i;
+	size_t	i;
 
 	lst = (char **)malloc((ft_countword(s, c) + 1) * sizeof(char *));
-	if (!s || !lst)
+	if (!s || !lst || only_char(s, c, lst) == 1)
 		return (0);
 	i = 0;
 	while (*s)
@@ -57,4 +72,18 @@ char	**ft_split(char const *s, char c)
 	}
 	lst[i] = NULL;
 	return (lst);
+}
+
+void	free_lst(char **lst)
+{
+	int	i = 0;
+
+	if (!lst)
+		return;
+	while (lst[i])
+	{
+		free(lst[i]);
+		i++;
+	}
+	free(lst);
 }
