@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 02:03:39 by ml-hote           #+#    #+#             */
-/*   Updated: 2025/04/04 19:14:48 by ml-hote          ###   ########.fr       */
+/*   Updated: 2025/04/07 15:27:02 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void	ft_swap(t_list **l, char name)
 	t_list	*second;
 
 	first = *l;
-	second = (*l)-> next;
-	first->next = second-> next;
+	second = (*l)->next;
+	first->next = second->next;
 	second->next = first;
 	*l = second;
 	ft_print_rule("s", name);

@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:21:04 by ml-hote           #+#    #+#             */
-/*   Updated: 2025/04/06 11:13:18 by ml-hote          ###   ########.fr       */
+/*   Updated: 2025/04/07 17:42:04 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,20 @@ int	ft_find_min(t_list **l)
 	int		min;
 
 	l_adress = (*l);
-	min = (*l)-> content;
-	(*l) = (*l)-> next;
+	min = (*l)->content;
+	(*l) = (*l)->next;
 	while ((*l) != NULL)
 	{
-		if ((*l)-> content < min)
-			min = (*l)-> content;
-		(*l) = (*l)-> next;
+		if ((*l)->content < min)
+			min = (*l)->content;
+		(*l) = (*l)->next;
 	}
 	(*l) = l_adress;
 	while ((*l) != NULL)
 	{
-		if ((*l)-> content == min)
-			(*l)-> index = 1;
-		(*l) = (*l)-> next;
+		if ((*l)->content == min)
+			(*l)->index = 1;
+		(*l) = (*l)->next;
 	}
 	(*l) = l_adress;
 	return (min);
@@ -56,13 +56,31 @@ int	ft_find_max(t_list **l)
 	int		max;
 
 	l_adress = (*l);
-	max = (*l)-> content;
-	(*l) = (*l)-> next;
+	max = (*l)->content;
+	(*l) = (*l)->next;
 	while ((*l) != NULL)
 	{
-		if ((*l)-> content > max)
-			max = (*l)-> content;
-		(*l) = (*l)-> next;
+		if ((*l)->content > max)
+			max = (*l)->content;
+		(*l) = (*l)->next;
+	}
+	(*l) = l_adress;
+	return (max);
+}
+
+int	ft_find_i_max(t_list **l)
+{
+	t_list	*l_adress;
+	int		max;
+
+	l_adress = (*l);
+	max = (*l)->index;
+	(*l) = (*l)->next;
+	while ((*l) != NULL)
+	{
+		if ((*l)->index > max)
+			max = (*l)->index;
+		(*l) = (*l)->next;
 	}
 	(*l) = l_adress;
 	return (max);
@@ -77,16 +95,16 @@ int	ft_assign_next_min(int ind, int min, t_list **l)
 	next_min = ft_find_max(l);
 	while ((*l) != NULL)
 	{
-		if ((*l)-> content > min && (*l)-> content < next_min)
-			next_min = (*l)-> content;
-		(*l) = (*l)-> next;
+		if ((*l)->content > min && (*l)->content < next_min)
+			next_min = (*l)->content;
+		(*l) = (*l)->next;
 	}
 	(*l) = l_adress;
 	while ((*l) != NULL)
 	{
-		if ((*l)-> content == next_min)
-			(*l)-> index = ind;
-		(*l) = (*l)-> next;
+		if ((*l)->content == next_min)
+			(*l)->index = ind;
+		(*l) = (*l)->next;
 	}
 	(*l) = l_adress;
 	return (next_min);
@@ -98,36 +116,30 @@ int	ft_find_next_min(int i, t_list **l)
 	int		next_min;
 
 	tmp = (*l);
-	next_min = ft_find_max(l);
+	next_min = ft_find_i_max(l);
 	while (tmp != NULL)
 	{
-		if (tmp-> index > i && tmp-> index < next_min)
-			next_min = tmp-> index;
-		tmp = tmp-> next;
+		if (tmp->index > i && tmp->index < next_min)
+			next_min = tmp->index;
+		tmp = tmp->next;
 	}
+	//printf("find_next_min: i = %i\tnext_min = %i\n", i, next_min);
 	return (next_min);
 }
 
 void	ft_assign_index(t_list **l)
 {
-	int		index;
-	t_list	*min_node;
-	t_list	*tmp;
+	int	ind;
+	int	j;
+	int	n_min;
 
-	index = 1;
-	while (index <= ft_lstsize(*l))
+	ind = 2;
+	j = ft_lstsize(*l) - 1;
+	n_min = ft_find_min(l);
+	while (j > 0)
 	{
-		tmp = *l;
-		min_node = NULL;
-		while (tmp)
-		{
-			if (tmp->index == 0 && (!min_node
-				|| tmp->content < min_node->content))
-				min_node = tmp;
-			tmp = tmp->next;
-		}
-		if (min_node)
-			min_node->index = index;
-		index++;
+		n_min = ft_assign_next_min(ind, n_min, l);
+		ind++;
+		j--;
 	}
 }

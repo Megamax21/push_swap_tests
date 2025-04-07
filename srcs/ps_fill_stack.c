@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:21:04 by ml-hote           #+#    #+#             */
-/*   Updated: 2025/04/06 10:35:13 by ml-hote          ###   ########.fr       */
+/*   Updated: 2025/04/07 20:32:47 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,24 +27,35 @@ int ft_is_all_good(char *v, t_list *s)
 	return (1);
 }
 
-int	ft_fill_stack(int len, char **entries, t_list **stack)
+int	ft_fill_stack(int base_len, int len, char **entries, t_list **stack)
 {
 	int	i;
 	int	value;
 
-	i = 1;
+	i = 0;
+	(void)base_len;
 	while (i < len)
 	{
-		if (ft_safe_atoi(entries[i], &value) == 0
-			|| ft_is_all_good(entries[i], *stack) == 0)
+		if (ft_safe_atoi(entries[i], &value) == 0)
 		{
-			ft_putstr_fd("Error\n", 1);
+			ft_putstr_fd("Error\n", 2);
 			ft_safelstclear(stack);
+			// if (base_len == 2)
+			free_lst(entries);
+			return (0);
+		}
+		if ( ft_is_all_good(entries[i], *stack) == 0)
+		{
+			ft_putstr_fd("Error\n", 2);
+			ft_safelstclear(stack);
+			// if (base_len == 2)
+			free_lst(entries);
 			return (0);
 		}
 		ft_lstadd_back(stack, ft_lstnew(value));
 		i++;
 	}
+	// free_lst(entries);
 	return (1);
 }
 /* 	Check content 
@@ -80,9 +91,9 @@ int	ft_check_double(int val, t_list *l)
 	stack_b = l;
 	while (stack_b != NULL)
 	{
-		if (stack_b -> content == val)
+		if (stack_b->content == val)
 			return (0);
-		stack_b = stack_b -> next;
+		stack_b = stack_b->next;
 	}
 	return (1);
 }
@@ -96,10 +107,10 @@ int	ft_get_cost(int ind, t_list **a )
 	mid = ft_lstsize(*a) / 2;
 	i = 0;
 	temp = *a;
-	while (temp != NULL && temp -> index != ind)
+	while (temp != NULL && temp->index != ind)
 	{
 		i++;
-		temp = temp -> next;
+		temp = temp->next;
 	}
 	if (i > mid)
 		return ((ft_lstsize(*a) - i) * (-1));

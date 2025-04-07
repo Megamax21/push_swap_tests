@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 16:42:23 by ml-hote           #+#    #+#             */
-/*   Updated: 2025/04/04 20:16:13 by ml-hote          ###   ########.fr       */
+/*   Updated: 2025/04/07 17:49:18 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,34 +29,35 @@ t_cost	*ft_newcost(int final_cost)
 	new->actual_cost = 0;
 	return (new);
 }
+#include <limits.h>
 
 void	ft_get_total_cost(t_list **a, t_list **b, t_cost **total_cost)
 {
 	t_list	*temp_b;
 	t_cost	*best_cost;
 	t_cost	*temp_c;
-	int		start;
+	// int		start;
 
-	start = 0;
+	// start = 0;
 	temp_b = *b;
 	best_cost = ft_newcost(0);
 	temp_c = ft_newcost(0);
+	temp_c->final_cost = INT_MAX;
+	// ft_update_temp_cost(best_cost, temp_c, total_cost);
 	while (temp_b != NULL)
 	{
 		ft_empty_cost(temp_c);
 		ft_work_on_a(a, temp_b, temp_c);
 		ft_work_on_b(b, temp_b, temp_c);
-		if (start == 0)
-		{
+		if (temp_c->actual_cost < temp_c->final_cost)
 			ft_update_temp_cost(best_cost, temp_c, total_cost);
-			start = 1;
-		}
-		if (temp_c -> actual_cost < temp_c -> final_cost)
-			ft_update_temp_cost(best_cost, temp_c, total_cost);
-		temp_c -> actual_cost = 0;
-		temp_b = temp_b -> next;
+		temp_c->actual_cost = 0;
+		temp_b = temp_b->next;
 	}
+	// dprintf(2, "Total cost is:\n");
+	// ft_print_cost(*total_cost);
 	ft_free_cost(temp_c);
+	ft_free_cost(best_cost);
 }
 
 void	ft_empty_cost(t_cost *c)
@@ -71,14 +72,14 @@ void	ft_empty_cost(t_cost *c)
 
 void	ft_copy_cost(t_cost *from, t_cost *to)
 {
-	to -> ra = from -> ra;
-	to -> rb = from -> rb;
-	to -> rr = from -> rr;
-	to -> rra = from -> rra;
-	to -> rrb = from -> rrb;
-	to -> rrr = from-> rrr;
-	to -> actual_cost = from-> actual_cost;
-	to -> final_cost = from-> final_cost;
+	to->ra = from->ra;
+	to->rb = from->rb;
+	to->rr = from->rr;
+	to->rra = from->rra;
+	to->rrb = from->rrb;
+	to->rrr = from->rrr;
+	to->actual_cost = from->actual_cost;
+	to->final_cost = from->final_cost;
 }
 
 int	ft_rework_cost(t_cost **c)
@@ -86,20 +87,20 @@ int	ft_rework_cost(t_cost **c)
 	int	i;
 
 	i = 0;
-	while ((*c)-> ra > 0 && (*c)-> rb > 0)
+	while ((*c)->ra > 0 && (*c)->rb > 0)
 	{
-		(*c)-> ra--;
-		(*c)-> rb--;
-		(*c)-> final_cost--;
-		(*c)-> rr++;
+		(*c)->ra--;
+		(*c)->rb--;
+		(*c)->final_cost--;
+		(*c)->rr++;
 		i++;
 	}
-	while ((*c)-> rra > 0 && (*c)-> rrb > 0)
+	while ((*c)->rra > 0 && (*c)->rrb > 0)
 	{
-		(*c)-> rra--;
-		(*c)-> rrb--;
-		(*c)-> final_cost--;
-		(*c)-> rrr++;
+		(*c)->rra--;
+		(*c)->rrb--;
+		(*c)->final_cost--;
+		(*c)->rrr++;
 	}
 	return (i);
 }
