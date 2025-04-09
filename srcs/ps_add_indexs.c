@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:21:04 by ml-hote           #+#    #+#             */
-/*   Updated: 2025/04/07 17:42:04 by ml-hote          ###   ########.fr       */
+/*   Updated: 2025/04/09 16:03:43 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,23 +107,6 @@ int	ft_assign_next_min(int ind, int min, t_list **l)
 		(*l) = (*l)->next;
 	}
 	(*l) = l_adress;
-	return (next_min);
-}
-
-int	ft_find_next_min(int i, t_list **l)
-{
-	t_list	*tmp;
-	int		next_min;
-
-	tmp = (*l);
-	next_min = ft_find_i_max(l);
-	while (tmp != NULL)
-	{
-		if (tmp->index > i && tmp->index < next_min)
-			next_min = tmp->index;
-		tmp = tmp->next;
-	}
-	//printf("find_next_min: i = %i\tnext_min = %i\n", i, next_min);
 	return (next_min);
 }
 

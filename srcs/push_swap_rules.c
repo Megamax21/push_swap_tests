@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 02:03:39 by ml-hote           #+#    #+#             */
-/*   Updated: 2025/04/07 15:27:02 by ml-hote          ###   ########.fr       */
+/*   Updated: 2025/04/09 16:12:39 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	ft_push(t_list **from, t_list **to, char name_to)
 	free(temp);
 	ft_print_rule("p", name_to);
 }
-
 
 void	ft_swap(t_list **l, char name)
 {
@@ -54,8 +53,7 @@ void	ft_rotate(t_list **l, char name)
 	*l = first->next;
 	first->next = NULL;
 	last->next = first;
-	// if (name != ' ')
-		ft_print_rule("r", name);
+	ft_print_rule("r", name);
 }
 
 void	ft_rev_rot(t_list **l, char name)
@@ -82,7 +80,10 @@ void	ft_rev_rot(t_list **l, char name)
 
 void	ft_print_rule(char *rule, char stack)
 {
-	ft_putstr_fd(rule, 1);
-	ft_putchar_fd(stack, 1);
-	ft_putchar_fd('\n', 1);
+	if (stack != ' ')
+	{
+		ft_putstr_fd(rule, 1);
+		ft_putchar_fd(stack, 1);
+		ft_putchar_fd('\n', 1);
+	}
 }

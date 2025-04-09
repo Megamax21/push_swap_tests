@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 13:45:52 by ml-hote           #+#    #+#             */
-/*   Updated: 2025/04/07 20:48:34 by ml-hote          ###   ########.fr       */
+/*   Updated: 2025/04/09 16:28:05 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(int arg_c, char **arg_v)
 	int		i;
 
 	if (arg_c == 1)
-		return(0);
+		return (0);
 	nb_args = 1;
 	stack_a = NULL;
 	stack_b = NULL;
@@ -30,7 +30,9 @@ int	main(int arg_c, char **arg_v)
 	{
 		if (ft_safe_atoi(arg_v[1], &i) && ft_check_content(arg_v[1]) == 1)
 			return (0);
-		nb_args = ft_count_words(arg_v[1]);
+		nb_args = ft_countword(arg_v[1], ' ');
+		if (nb_args == 0)
+			return (0);
 		args = ft_split(arg_v[1], ' ');
 		if (!args || !args[0])
 		{
@@ -39,7 +41,6 @@ int	main(int arg_c, char **arg_v)
 				free_lst(args);
 			return (0);
 		}
-
 	}
 	else
 	{
@@ -83,17 +84,17 @@ void	ft_safelstclear(t_list **lst)
 
 void	ft_free_cost(t_cost *c)
 {
-    if (c != NULL)
-    {
-        free(c);
-        c = NULL;
-    }
+	if (c != NULL)
+	{
+		free(c);
+		c = NULL;
+	}
 }
 
-void ft_print_cost(t_cost *c)
+void	ft_print_cost(t_cost *c)
 {
 	dprintf(2, "***** Afichage Cout *****\n");
-	dprintf(2, "ra %i \n", c->ra);	
+	dprintf(2, "ra %i \n", c->ra);
 	dprintf(2, "rb %i \n", c->rb);
 	dprintf(2, "rr %i \n", c->rr);
 	dprintf(2, "rra %i \n", c->rra);
@@ -104,14 +105,17 @@ void ft_print_cost(t_cost *c)
 	dprintf(2, "***** ------------- *****\n");
 }
 
-void ft_print_lst(t_list *list)
+void	ft_print_lst(t_list *list)
 {
-    t_list *current = list;
+	t_list	*current;
+
+	current = list;
 	printf("===== Afichage Liste =====\n");
-    while (current != NULL)
-    {
-        dprintf(2, "Index: %d, Contenu: %d\n", current->index, current->content);
-        current = current->next;
-    }
+	while (current != NULL)
+	{
+		dprintf(2, "Index: %d, Contenu: %d\n",
+			current->index, current->content);
+		current = current->next;
+	}
 	printf("===== -------------- =====\n");
 }

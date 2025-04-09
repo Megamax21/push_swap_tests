@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 17:16:32 by ml-hote           #+#    #+#             */
-/*   Updated: 2025/04/07 17:42:36 by ml-hote          ###   ########.fr       */
+/*   Updated: 2025/04/09 16:11:07 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,16 +62,6 @@ void	ft_work_on_a(t_list **a, t_list *tb, t_cost *c)
 		c->rra -= ft_get_cost(ft_find_next_min(tb->index, a), a);
 		c->actual_cost -= ft_get_cost(ft_find_next_min(tb->index, a), a);
 	}
-	// printf("vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv\n");
-	// printf("Dans Work on A :\n");
-	// printf("Pile A :\n");
-	// ft_print_lst(*a);
-	// printf("Pile B :\n");
-	// ft_print_lst(tb);
-	// printf("Index sommet pile B = %i\n", tb->index);
-	// printf("Donc le prochain minimum dans A est : %i\n", ft_find_next_min(tb->index, a));
-	// ft_print_cost(c);
-	// printf("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n");
 }
 
 void	ft_work_on_b(t_list **b, t_list *tb, t_cost *c)
@@ -94,6 +84,4 @@ void	ft_update_temp_cost(t_cost *best_c, t_cost *temp_c, t_cost **total_c)
 	ft_copy_cost(temp_c, best_c);
 	temp_c->final_cost = temp_c->actual_cost;
 	ft_copy_cost(best_c, *total_c);
-	// printf("update temp cost : temp_c final cost = %i\n", temp_c->final_cost);
-	// printf("update temp cost : temp_c actual cost = %i\n", temp_c->actual_cost);
 }

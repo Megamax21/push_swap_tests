@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:21:04 by ml-hote           #+#    #+#             */
-/*   Updated: 2025/04/07 20:32:47 by ml-hote          ###   ########.fr       */
+/*   Updated: 2025/04/09 16:08:13 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 	In the other case it will return 1
 */
 
-int ft_is_all_good(char *v, t_list *s)
+int	ft_is_all_good(char *v, t_list *s)
 {
 	if (ft_check_content(v) == 0
 		|| ft_check_double(ft_atoi(v), s) == 0)
@@ -40,24 +40,22 @@ int	ft_fill_stack(int base_len, int len, char **entries, t_list **stack)
 		{
 			ft_putstr_fd("Error\n", 2);
 			ft_safelstclear(stack);
-			// if (base_len == 2)
 			free_lst(entries);
 			return (0);
 		}
-		if ( ft_is_all_good(entries[i], *stack) == 0)
+		if (ft_is_all_good(entries[i], *stack) == 0)
 		{
 			ft_putstr_fd("Error\n", 2);
 			ft_safelstclear(stack);
-			// if (base_len == 2)
 			free_lst(entries);
 			return (0);
 		}
 		ft_lstadd_back(stack, ft_lstnew(value));
 		i++;
 	}
-	// free_lst(entries);
 	return (1);
 }
+
 /* 	Check content 
 	This functions helps check a value at the beginning of 
 	push swap when the program takes in the args. It checks

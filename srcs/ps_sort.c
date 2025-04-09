@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 22:41:29 by ml-hote           #+#    #+#             */
-/*   Updated: 2025/04/07 15:27:11 by ml-hote          ###   ########.fr       */
+/*   Updated: 2025/04/09 16:10:44 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ void	ft_sort(t_list **stack_a, t_list **stack_b, int length)
 		if (len == 2)
 			ft_sort_two(stack_a);
 		else if (len == 3)
-			sort_thre2(stack_a);
+			ft_sort_three(stack_a);
 		else if (len == 4)
-			ft_sort_four(stack_a, stack_b);		
+			ft_sort_four(stack_a, stack_b);
 		else if (len == 5)
 			ft_sort_five(stack_a, stack_b);
 		else if (len > 5)
@@ -52,8 +52,6 @@ void	ft_long_sort(t_list **a, t_list **b, int length)
 			ft_empty_cost(total_cost);
 			total_cost->final_cost = 0;
 		}
-		// if (ft_lstsize(*a) == 3)
-		// 	sort_thre2(a);
 	}
 	ft_get_one_on_top(a);
 	ft_free_cost(total_cost);
@@ -94,7 +92,7 @@ void	ft_init_sort(t_list **a, t_list **b, int l)
 	int	mid;
 	int	size;
 
-	if (!a || !*a) 
+	if (!a || !*a)
 		return ;
 	size = ft_lstsize(*a);
 	mid = l / 2;
@@ -109,4 +107,3 @@ void	ft_init_sort(t_list **a, t_list **b, int l)
 			ft_rotate(b, 'b');
 	}
 }
-

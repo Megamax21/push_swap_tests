@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 20:26:42 by ml-hote           #+#    #+#             */
-/*   Updated: 2025/04/07 15:27:11 by ml-hote          ###   ########.fr       */
+/*   Updated: 2025/04/09 16:09:58 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,44 +34,28 @@ int	ft_check_order(t_list	*l)
 
 void	ft_sort_three(t_list **l)
 {
-	if (ft_check_order(*l) == 1)
-		ft_swap(l, 'a');
-	if (ft_check_order(*l) == 2)
-		ft_rotate(l, 'a');
-	if (ft_check_order(*l) == 3)
-		ft_rev_rot(l, 'a');
-}
+	int	a;
+	int	b;
+	int	c;
 
-static void	find_extremum(t_list **l, int *min, int *max)
-{
-	t_list *tmp;
-	
-	tmp = *l;
-	*min = tmp->content;
-	*max = *min;
-	while (tmp)
+	a = (*l)->content;
+	b = (*l)->next->content;
+	c = (*l)->next->next->content;
+	if (a > b && b < c && a < c)
+		ft_swap(l, 'a');
+	else if (a > b && b > c)
 	{
-		if (tmp->content < *min)
-			*min = tmp->content;
-		if (tmp->content > *max)
-			*max = tmp->content;
-		tmp = tmp->next;
-	}
-}
-
-void	sort_thre2(t_list **l)
-{
-	int	max;
-	int	min;
-	
-	find_extremum(l, &min, &max);
-	if (((*l)->content != max && (*l)->next->content == min)
-		|| ((*l)->content == max && (*l)->next->content != min)
-		|| ((*l)->content == min && (*l)->next->content == max))
 		ft_swap(l, 'a');
-	else if ((*l)->content == max && (*l)->next->content == min)
+		ft_rev_rot(l, 'a');
+	}
+	else if (a > b && b < c && a > c)
 		ft_rotate(l, 'a');
-	else if ((*l)->content != min && (*l)->next->content == max)
+	else if (a < b && b > c && a < c)
+	{
+		ft_swap(l, 'a');
+		ft_rotate(l, 'a');
+	}
+	else if (a < b && b > c && a > c)
 		ft_rev_rot(l, 'a');
 }
 
@@ -82,7 +66,6 @@ void	ft_sort_four(t_list **a, t_list **b)
 	ft_push(a, b, 'b');
 	ft_reset_index(*a);
 	ft_assign_index(a);
-	// ft_print_lst(*a);
 	ft_sort_three(a);
 	ft_push(b, a, 'a');
 }

@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 16:42:23 by ml-hote           #+#    #+#             */
-/*   Updated: 2025/04/07 17:49:18 by ml-hote          ###   ########.fr       */
+/*   Updated: 2025/04/09 16:06:46 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,21 +29,17 @@ t_cost	*ft_newcost(int final_cost)
 	new->actual_cost = 0;
 	return (new);
 }
-#include <limits.h>
 
 void	ft_get_total_cost(t_list **a, t_list **b, t_cost **total_cost)
 {
 	t_list	*temp_b;
 	t_cost	*best_cost;
 	t_cost	*temp_c;
-	// int		start;
 
-	// start = 0;
 	temp_b = *b;
 	best_cost = ft_newcost(0);
 	temp_c = ft_newcost(0);
 	temp_c->final_cost = INT_MAX;
-	// ft_update_temp_cost(best_cost, temp_c, total_cost);
 	while (temp_b != NULL)
 	{
 		ft_empty_cost(temp_c);
@@ -54,8 +50,6 @@ void	ft_get_total_cost(t_list **a, t_list **b, t_cost **total_cost)
 		temp_c->actual_cost = 0;
 		temp_b = temp_b->next;
 	}
-	// dprintf(2, "Total cost is:\n");
-	// ft_print_cost(*total_cost);
 	ft_free_cost(temp_c);
 	ft_free_cost(best_cost);
 }
