@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ml-hote <ml-hote@student.42nice.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:57:06 by ml-hote           #+#    #+#             */
-/*   Updated: 2025/04/09 16:06:52 by ml-hote          ###   ########.fr       */
+/*   Updated: 2025/04/09 23:27:37 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <unistd.h>
 # include <stdio.h>
 # include "../libft/libft.h"
-#include <limits.h>
+# include <limits.h>
 
 typedef struct s_cost
 {
@@ -78,5 +78,10 @@ void	ft_sort_five(t_list **a, t_list **b);
 void	ft_reset_index(t_list *lst);
 void	ft_sort_three(t_list **l);
 t_cost	*ft_newcost(int final_cost);
+
+int		ft_handle_two_args(char **av, int *nb_args, char ***args);
+void	ft_handle_more_args(char ***args, int *ac, char ***av);
+void	ft_set_values(t_list **a, t_list **b, int *nb_args, char ***args);
+void	ft_handle_frees(char ***args, t_list **a, t_list **b);
 
 #endif
