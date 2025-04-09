@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 15:29:53 by ml-hote           #+#    #+#             */
-/*   Updated: 2025/04/07 20:37:16 by ml-hote          ###   ########.fr       */
+/*   Updated: 2025/04/09 14:44:40 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,11 @@ char	**ft_split(char const *s, char c)
 
 void	free_lst(char **lst)
 {
-	int	i = 0;
+	int	i;
 
+	i = 0;
 	if (!lst)
-		return;
+		return ;
 	while (lst[i])
 	{
 		free(lst[i]);
