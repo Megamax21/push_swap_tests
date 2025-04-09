@@ -6,7 +6,7 @@
 /*   By: ml-hote <ml-hote@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:57:06 by ml-hote           #+#    #+#             */
-/*   Updated: 2025/04/07 20:20:23 by ml-hote          ###   ########.fr       */
+/*   Updated: 2025/04/09 16:06:52 by ml-hote          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <unistd.h>
 # include <stdio.h>
 # include "../libft/libft.h"
+#include <limits.h>
 
 typedef struct s_cost
 {
@@ -32,8 +33,8 @@ typedef struct s_cost
 	int	actual_cost;
 }		t_cost;
 
-void ft_print_cost(t_cost *c);
-void ft_print_lst(t_list *list);
+void	ft_print_cost(t_cost *c);
+void	ft_print_lst(t_list *list);
 
 int		ft_check_sorted(t_list **l);
 int		ft_check_content(char *value);
@@ -75,7 +76,7 @@ void	ft_update_temp_cost(t_cost *best_c, t_cost *temp_c, t_cost **total_c);
 void	ft_sort_four(t_list **a, t_list **b);
 void	ft_sort_five(t_list **a, t_list **b);
 void	ft_reset_index(t_list *lst);
-void	sort_thre2(t_list **l);
+void	ft_sort_three(t_list **l);
 t_cost	*ft_newcost(int final_cost);
 
 #endif
